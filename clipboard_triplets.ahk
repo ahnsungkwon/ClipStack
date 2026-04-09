@@ -183,6 +183,14 @@ GetCurrentLanguage() {
         return "en"
 }
 
+FindArrayIndex(items, target, defaultIndex := 1) {
+    for index, value in items {
+        if (value = target)
+            return index
+    }
+    return defaultIndex
+}
+
 global IniPath := A_ScriptDir "\clipboard_triplets.ini"
 global HistoryScriptPath := A_ScriptDir "\get_clipboard_history_top_items.ps1"
 global ManagerGui := ""
@@ -251,7 +259,7 @@ OpenManager(selectedSlot := 1) {
 
     langItems := ["English", "한국어", "Español", "Français", "Deutsch"]
     langValues := ["en", "ko", "es", "fr", "de"]
-    currentLangIndex := langValues.IndexOf(currentLang) || 1
+    currentLangIndex := FindArrayIndex(langValues, currentLang, 1)
 
     windowObj.AddText("xm", lang["slot"])
     slotDrop := windowObj.AddDropDownList("x+10 w80 Choose" selectedSlot, slotItems)
