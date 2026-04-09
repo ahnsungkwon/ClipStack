@@ -15,15 +15,10 @@
 
 ## 파일
 
-- [clipboard_triplets.ahk](E:/GoogleDrive/코드/Codex_Worktree_Test_Repo/clipboard_triplets.ahk)
-  - 실제 스크립트
-- [클립보드_3종세트_실행.cmd](E:/GoogleDrive/코드/Codex_Worktree_Test_Repo/클립보드_3종세트_실행.cmd)
-  - 더블클릭 실행용
-- [CLIPBOARD_TRIPLETS_GUIDE.md](E:/GoogleDrive/코드/Codex_Worktree_Test_Repo/CLIPBOARD_TRIPLETS_GUIDE.md)
-  - 현재 설명서
-- `clipboard_triplets.ini`
-  - 저장 데이터 파일
-  - 한 번 저장하면 자동 생성됨
+- `clipboard_triplets.ahk` - Main script (AutoHotkey v2)
+- `run.cmd` - Double-click launcher
+- `clipboard_triplets.ini` - Preset storage (auto-created)
+- `CLIPBOARD_TRIPLETS_GUIDE.md` - This guide
 
 ## 준비
 
@@ -37,15 +32,11 @@
 
 ## 실행 방법
 
-방법 1:
+**방법 1**: `clipboard_triplets.ahk` 더블클릭
 
-- [clipboard_triplets.ahk](E:/GoogleDrive/코드/Codex_Worktree_Test_Repo/clipboard_triplets.ahk) 더블클릭
+**방법 2**: `run.cmd` 더블클릭
 
-방법 2:
-
-- [클립보드_3종세트_실행.cmd](E:/GoogleDrive/코드/Codex_Worktree_Test_Repo/클립보드_3종세트_실행.cmd) 더블클릭
-
-실행 후에는 단축키를 사용할 수 있습니다.
+실행 후 트레이에서 AutoHotkey 아이콘을 확인할 수 있으면 정상 실행된 것입니다.
 
 ## 단축키
 
@@ -90,9 +81,9 @@
 클립보드에 아래처럼 3줄이 있을 때:
 
 ```text
-사이다경제4/7
-어정현 50
-안민관 120 정진엽 20 최재윤 20 이승호 10 김동진 10
+Project Q1 Report - Tech Division
+Lead: John Smith | Team Size: 8 | Status: In Progress
+Deliverables: API v2.0, Dashboard, Mobile App | Budget Used: 75%
 ```
 
 관리 창에서 `클립보드 3줄 가져오기`를 누르면:
