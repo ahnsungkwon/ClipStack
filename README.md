@@ -12,6 +12,22 @@
 
 ## English
 
+### Why ClipStack Exists
+
+I originally did not even know Windows had a built-in clipboard history feature.
+
+While working on repetitive online registration tasks, I kept typing or copying and pasting the same pieces of text one by one. It was slow, tedious, and easy to lose focus. Then I discovered the built-in Windows multi-clipboard through `Win+V`, and it felt like a small breakthrough. The workflow became much faster and more comfortable.
+
+But there was still one problem. My work was not just about reusing the same fixed text forever. Some values changed every time, such as dates, 담당자 names, or event-specific details. I also had to switch back and forth between different registration sets depending on the event I was handling.
+
+That made me think: what if these related clipboard items could be grouped into reusable sets and switched instantly?
+
+That idea became **ClipStack**.
+
+ClipStack builds on top of the Windows clipboard history experience and makes it practical for real work: save related text as sets, inject them back into the clipboard stack, and switch between them quickly with hotkeys.
+
+My hope is simple: that this small utility makes repetitive work easier, smoother, and less frustrating for other users too. Good luck to everyone doing real work with real repetition. You deserve better tools.
+
 ### Features
 
 - 💾 **Save 6 preset clipboard sets** - Store your favorite 3-item text combinations
@@ -67,6 +83,23 @@ MIT License - Use freely for personal or commercial purposes
 ---
 
 ## 한국어 설명
+
+### 왜 ClipStack을 만들었나
+
+처음에는 Windows 기본 기능인 멀티 클립보드 자체를 몰랐습니다.
+
+온라인 서류 등록 업무를 하다 보면 비슷한 내용을 여러 번 입력해야 하는데, 매번 한 개씩 복사하고 붙여넣는 과정이 너무 번거롭고 시간도 많이 들었습니다. 그러다가 검색을 하다 보니 Windows에 `Win+V`로 불러오는 기본 멀티 클립보드 기능이 있다는 걸 알게 됐고, 그때 정말 "유레카"를 외쳤습니다. 작업이 훨씬 편해졌습니다.
+
+하지만 거기서도 아쉬움이 있었습니다. 제 작업은 완전히 똑같은 내용을 반복하는 것만은 아니었습니다. 날짜나 담당자처럼 이벤트마다 조금씩 바뀌는 항목이 있었고, 여러 종류의 등록 업무를 번갈아 처리해야 할 때도 많았습니다.
+
+그래서 자연스럽게 이런 생각이 들었습니다.
+**"관련된 텍스트들을 세트로 묶어서, 필요할 때 바로 바꿔 쓸 수 있으면 얼마나 좋을까?"**
+
+그 생각을 구현한 것이 바로 **ClipStack**입니다.
+
+ClipStack은 Windows 멀티 클립보드를 더 실무적으로 쓸 수 있게 만들어줍니다. 자주 쓰는 여러 줄 텍스트를 세트로 저장하고, 다시 클립보드 히스토리에 넣고, 단축키로 빠르게 전환할 수 있게 해줍니다.
+
+제 바람은 단순합니다. 이 작은 유틸리티가 반복적이고 번거로운 작업을 조금이라도 더 쉽게 만들어줬으면 좋겠습니다. 반복 업무를 하는 모든 사용자들, 정말 화이팅입니다.
 
 ### 기능
 
