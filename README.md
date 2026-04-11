@@ -18,7 +18,7 @@ I originally did not even know Windows had a built-in clipboard history feature.
 
 While working on repetitive online registration tasks, I kept typing or copying and pasting the same pieces of text one by one. It was slow, tedious, and easy to lose focus. Then I discovered the built-in Windows multi-clipboard through `Win+V`, and it felt like a small breakthrough. The workflow became much faster and more comfortable.
 
-But there was still one problem. My work was not just about reusing the same fixed text forever. Some values changed every time, such as dates, 담당자 names, or event-specific details. I also had to switch back and forth between different registration sets depending on the event I was handling.
+But there was still one problem. My work was not just about reusing the same fixed text forever. Some values changed every time, such as dates, staff names, or event-specific details. I also had to switch back and forth between different registration sets depending on the event I was handling.
 
 That made me think: what if these related clipboard items could be grouped into reusable sets and switched instantly?
 
