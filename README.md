@@ -6,6 +6,12 @@
 
 *Quick demo of ClipStack workflow: grab, stack, sync, and switch between saved text sets.*
 
+## Screenshots
+
+| Workflow | Set switching | UI detail |
+|---|---|---|
+| ![ClipStack Workflow](./docs/assets/clipstack-shot-1.jpg) | ![ClipStack Set Switching](./docs/assets/clipstack-shot-2.jpg) | ![ClipStack UI Detail](./docs/assets/clipstack-shot-3.jpg) |
+
 [한국어 설명](#한국어-설명) | [English](#english) 
 
 ---
