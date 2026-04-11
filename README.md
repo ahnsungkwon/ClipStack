@@ -2,6 +2,10 @@
 
 **A powerful Windows clipboard manager that extends the built-in multi-clipboard (Win+V) with quick hotkey access to preset text sets.**
 
+![ClipStack Demo](./docs/assets/clipstack-demo.gif)
+
+*Quick demo of ClipStack workflow: grab, stack, sync, and switch between saved text sets.*
+
 [한국어 설명](#한국어-설명) | [English](#english) 
 
 ---
