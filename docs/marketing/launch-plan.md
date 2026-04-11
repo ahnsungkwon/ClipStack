@@ -10,11 +10,26 @@ It solves a very specific pain:
 - switching between slightly different text groups,
 - and wasting time copying items one by one.
 
+More importantly, the real pain is not only copying.
+It is losing momentum while trying to find and reuse what was copied before.
+ClipStack should be framed as a tool that reduces workflow interruption.
+
+## Message pillars
+1. **Name the inconvenience clearly**
+   - "복붙은 쉬운데, 클립이 쌓이면 오히려 정리가 안 된다."
+2. **Show the improvement through real experience**
+   - not just saving clips, but making reuse faster
+3. **Let the demo do the explaining**
+   - one short GIF/video should make the value obvious
+
 ## Positioning
 - **Before**: Users copy one line at a time and constantly reopen clipboard history.
 - **Discovery**: Windows already has Win+V multi-clipboard, which is great.
 - **Problem left unsolved**: real work needs reusable grouped sets, not only recent history.
 - **After**: ClipStack adds reusable 3-item sets, fast switching, and practical workflow control.
+
+### One-line positioning
+**ClipStack is not a clipboard storage app, it is a tool that helps frequent copy/paste work feel less interrupted.**
 
 ## Target users
 1. Online registration / data entry workers
@@ -36,8 +51,13 @@ It solves a very specific pain:
 ## Priority channels
 ### 1) YouTube Shorts / Reels
 Best for showing the workflow quickly.
-- 15 to 20 sec is enough
-- hook in first 2 to 3 sec
+- Shorts can run longer now, but for real spread 20 to 35 seconds works better
+- 9:16 vertical
+- 1080 x 1920 export
+- hook in first 2 seconds
+- subtitles required
+- one message per video
+- final 3 seconds should point to GitHub or README
 - start from pain, not features
 - show the workflow immediately after the pain hook
 - use the existing GIF/video as the visual backbone
@@ -73,43 +93,60 @@ Tone rule:
 - do not sound like an ad
 - sound like someone sharing a genuinely useful tool they built for a real annoyance
 
-## 7-day rollout suggestion
-### Day 1
-- README/GIF/screenshots already prepared
-- Publish blog article first
-- Upload Shorts #1: `Win+V 알았을 때의 충격`
-- Post Instagram/Reels version
+## 2-week rollout plan
+### Week 1
+**Day 1**
+- publish 1 YouTube Short
+- publish 1 Instagram Reel
+- publish 1 Threads/X launch post
 
-### Day 2
-- Share community post to 2 or 3 communities
-- Use a soft intro, not a promotional tone
+**Day 2**
+- publish 1 blog post
+- topic: why ClipStack was made, not just what it does
 
-### Day 3
-- Upload Shorts #2: `왜 기본 멀티클립보드만으로는 부족한가`
+**Day 3**
+- post one short "real usage moment" clip
+- collect comments and DMs
 
-### Day 4
-- Post carousel: `반복 입력 업무를 세트로 바꾸는 법`
+**Day 5**
+- publish Shorts #2
+- topic: who this is especially good for
 
-### Day 5
-- Upload Shorts #3: hotkey demo (`Ctrl+Alt+1~6`)
+### Week 2
+**Day 8**
+- publish blog post #2
+- topic: where the workflow became faster
 
-### Day 6
-- repost best-performing short to another platform
-- collect comments / user pain phrases
+**Day 10**
+- publish comparison short
+- normal workflow vs ClipStack workflow
 
-### Day 7
-- recap post with repo + best demo clip + first feedback
+**Day 12**
+- publish carousel or text post with feedback and usage insights
+
+**Day 14**
+- publish a reflection post
+- `7일간 써본 후기` or early feedback summary
+
+## Immediate posting priority
+1. YouTube Shorts 1
+2. Threads/X launch post 1
+3. Instagram Reel 1
+4. Blog post 1
+5. Shorts 2 after 3 days
 
 ## 3-day practical action guide
 ### Today
-- publish the blog post on Naver blog or Tistory
-- use the story angle, not a feature list first
+- publish one Short first
+- publish one Threads/X launch post
+- publish one Instagram Reel
 
 ### Tomorrow
-- share to 2 to 3 communities with GIF and GitHub link
+- publish the blog post on Naver blog, Velog, or Tistory
+- keep it story-first
 
 ### The day after
-- create one polished 15-second short in CapCut or Vrew and upload to YouTube + Instagram
+- share to 2 to 3 communities with GIF and GitHub link
 
 ## Conversion path
 1. Short video catches attention
@@ -132,6 +169,19 @@ Market it like:
 - "ClipStack completes the workflow"
 - "This is a small but practical tool for people doing real repetitive work"
 - "Share usefulness first, promote second"
+- functionality is secondary, usage context is primary
+
+## CTA guidance
+At this stage, the best CTA is not purchase or even install-first.
+The best CTA is feedback collection.
+
+Use lines like:
+- `README 첫부분 데모 보고 의견 주세요`
+- `이런 작업에도 쓸 만한지 피드백 주세요`
+- `어떤 흐름에서 제일 불편했는지 알려주세요`
+
+Early on, reactions are more valuable than forced conversion.
+Those reactions will improve future messaging.
 
 ## Community post template
 안녕하세요! 평소 윈도우 기본 클립보드 기능이 조금 아쉬워서 주말 동안 작은 유틸리티를 하나 만들어봤습니다.

@@ -47,14 +47,21 @@
 - X / Threads developer communities
 
 ## Recommended posting order
-1. Blog article
-2. YouTube Shorts #1
+1. YouTube Shorts #1
+2. Threads/X launch post #1
 3. Instagram/Reels #1
-4. Community sharing
-5. X / Threads thread
-6. Shorts #2
+4. Blog article
+5. Shorts #2 after 3 days
+6. Community sharing
 7. Carousel post
 8. Shorts #3
+
+## CTA rule
+At this stage, use feedback CTAs more than install CTAs.
+Examples:
+- README 데모 보고 의견 주세요
+- 이런 작업에도 쓸 만한지 피드백 주세요
+- 어떤 흐름에서 제일 불편했는지 알려주세요
 
 ## Link to repo
 https://github.com/ahnsungkwon/ClipStack
