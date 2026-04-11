@@ -7,6 +7,7 @@
 - YouTube Shorts script set
 - Blog draft
 - Instagram caption pack
+- X / Threads draft
 
 ## Next actions
 ### Today
@@ -43,15 +44,17 @@
 - Ppomppu
 - AutoHotkey / Windows productivity communities
 - relevant open chat groups
+- X / Threads developer communities
 
 ## Recommended posting order
 1. Blog article
 2. YouTube Shorts #1
 3. Instagram/Reels #1
 4. Community sharing
-5. Shorts #2
-6. Carousel post
-7. Shorts #3
+5. X / Threads thread
+6. Shorts #2
+7. Carousel post
+8. Shorts #3
 
 ## Link to repo
 https://github.com/ahnsungkwon/ClipStack
