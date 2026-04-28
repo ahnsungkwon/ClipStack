@@ -9,7 +9,9 @@ langs := Map(
         "load", "Load",
         "save", "Save",
         "inject", "Inject",
+        "clear_slot", "Clear",
         "settings", "Settings",
+        "widget_button", "Widget",
         "language", "Language",
         "setname", "Set Name",
         "top", "Top Item (appears at top in Win+V)",
@@ -24,7 +26,13 @@ langs := Map(
         "recent_3_items_loaded", "Loaded latest 3 items",
         "current_3_loaded", "Loaded current 3 lines",
         "set_loaded", "Loaded",
-        "startup_tip", "Ctrl+Alt+0 Manager | Ctrl+Alt+1..6 Load | Ctrl+Alt+Shift+1..6 Edit",
+        "startup_tip", "Ctrl+Alt+0 Manager | Ctrl+Alt+W Widget | Ctrl+Alt+1..6 Load | Ctrl+Alt+Shift+1..6 Edit",
+        "widget_title", "ClipStack Slots",
+        "widget_empty", "(empty)",
+        "refresh", "Refresh",
+        "manager", "Manager",
+        "slot_cleared", "Slot cleared",
+        "confirm_clear", "Clear this slot?",
         "language_changed", "Language changed. Restart to apply changes.",
         "err_script_not_found", "History script not found.",
         "err_clipboard_read", "Failed to read clipboard history.",
@@ -42,7 +50,9 @@ langs := Map(
         "load", "불러오기",
         "save", "저장",
         "inject", "주입",
+        "clear_slot", "비우기",
         "settings", "설정",
+        "widget_button", "위젯",
         "language", "언어",
         "setname", "세트 이름",
         "top", "위 항목 (Win+V에서 맨 위)",
@@ -57,7 +67,13 @@ langs := Map(
         "recent_3_items_loaded", "최근 3개 항목 가져옴",
         "current_3_loaded", "현재 3줄 가져옴",
         "set_loaded", "불러옴",
-        "startup_tip", "Ctrl+Alt+0 관리창 | Ctrl+Alt+1..6 불러오기 | Ctrl+Alt+Shift+1..6 편집",
+        "startup_tip", "Ctrl+Alt+0 관리창 | Ctrl+Alt+W 위젯 | Ctrl+Alt+1..6 불러오기 | Ctrl+Alt+Shift+1..6 편집",
+        "widget_title", "ClipStack 슬롯",
+        "widget_empty", "(비어 있음)",
+        "refresh", "새로고침",
+        "manager", "관리",
+        "slot_cleared", "슬롯을 비웠습니다",
+        "confirm_clear", "현재 슬롯을 비울까요?",
         "language_changed", "언어가 변경되었습니다. 재시작 후 적용됩니다.",
         "err_script_not_found", "히스토리 읽기 스크립트를 찾을 수 없습니다.",
         "err_clipboard_read", "멀티클립보드 최근 3개를 읽지 못했습니다.",
@@ -75,7 +91,9 @@ langs := Map(
         "load", "Cargar",
         "save", "Guardar",
         "inject", "Inyectar",
+        "clear_slot", "Borrar",
         "settings", "Configuración",
+        "widget_button", "Widget",
         "language", "Idioma",
         "setname", "Nombre del conjunto",
         "top", "Elemento superior",
@@ -90,7 +108,13 @@ langs := Map(
         "recent_3_items_loaded", "Cargados 3 elementos más recientes",
         "current_3_loaded", "Cargadas 3 líneas actuales",
         "set_loaded", "Cargado",
-        "startup_tip", "Ctrl+Alt+0 Administrador | Ctrl+Alt+1..6 Cargar | Ctrl+Alt+Shift+1..6 Editar",
+        "startup_tip", "Ctrl+Alt+0 Administrador | Ctrl+Alt+W Widget | Ctrl+Alt+1..6 Cargar | Ctrl+Alt+Shift+1..6 Editar",
+        "widget_title", "Ranuras ClipStack",
+        "widget_empty", "(vacío)",
+        "refresh", "Actualizar",
+        "manager", "Admin",
+        "slot_cleared", "Ranura borrada",
+        "confirm_clear", "¿Borrar esta ranura?",
         "language_changed", "Idioma cambiado. Reinicia para aplicar cambios.",
         "err_script_not_found", "Script de historial no encontrado.",
         "err_clipboard_read", "No se pudo leer el historial del portapapeles.",
@@ -108,7 +132,9 @@ langs := Map(
         "load", "Charger",
         "save", "Enregistrer",
         "inject", "Injecter",
+        "clear_slot", "Effacer",
         "settings", "Paramètres",
+        "widget_button", "Widget",
         "language", "Langue",
         "setname", "Nom de l'ensemble",
         "top", "Élément supérieur",
@@ -123,7 +149,13 @@ langs := Map(
         "recent_3_items_loaded", "3 derniers éléments chargés",
         "current_3_loaded", "3 lignes actuelles chargées",
         "set_loaded", "Chargé",
-        "startup_tip", "Ctrl+Alt+0 Gestionnaire | Ctrl+Alt+1..6 Charger | Ctrl+Alt+Shift+1..6 Éditer",
+        "startup_tip", "Ctrl+Alt+0 Gestionnaire | Ctrl+Alt+W Widget | Ctrl+Alt+1..6 Charger | Ctrl+Alt+Shift+1..6 Éditer",
+        "widget_title", "Emplacements ClipStack",
+        "widget_empty", "(vide)",
+        "refresh", "Actualiser",
+        "manager", "Gestion",
+        "slot_cleared", "Emplacement effacé",
+        "confirm_clear", "Effacer cet emplacement ?",
         "language_changed", "Langue modifiée. Redémarrez pour appliquer les modifications.",
         "err_script_not_found", "Script d'historique non trouvé.",
         "err_clipboard_read", "Impossible de lire l'historique du presse-papiers.",
@@ -141,7 +173,9 @@ langs := Map(
         "load", "Laden",
         "save", "Speichern",
         "inject", "Injizieren",
+        "clear_slot", "Leeren",
         "settings", "Einstellungen",
+        "widget_button", "Widget",
         "language", "Sprache",
         "setname", "Satzname",
         "top", "Oberes Element",
@@ -156,7 +190,13 @@ langs := Map(
         "recent_3_items_loaded", "Letzte 3 Elemente geladen",
         "current_3_loaded", "Aktuelle 3 Zeilen geladen",
         "set_loaded", "Geladen",
-        "startup_tip", "Strg+Alt+0 Manager | Strg+Alt+1..6 Laden | Strg+Alt+Shift+1..6 Bearbeiten",
+        "startup_tip", "Strg+Alt+0 Manager | Strg+Alt+W Widget | Strg+Alt+1..6 Laden | Strg+Alt+Shift+1..6 Bearbeiten",
+        "widget_title", "ClipStack Felder",
+        "widget_empty", "(leer)",
+        "refresh", "Aktualisieren",
+        "manager", "Manager",
+        "slot_cleared", "Feld geleert",
+        "confirm_clear", "Dieses Feld leeren?",
         "language_changed", "Sprache geändert. Starten Sie neu, um Änderungen anzuwenden.",
         "err_script_not_found", "Verlaufsskript nicht gefunden.",
         "err_clipboard_read", "Verlauf der Zwischenablage konnte nicht gelesen werden.",
@@ -194,12 +234,16 @@ FindArrayIndex(items, target, defaultIndex := 1) {
 global IniPath := A_ScriptDir "\clipboard_triplets.ini"
 global HistoryScriptPath := A_ScriptDir "\get_clipboard_history_top_items.ps1"
 global ManagerGui := ""
+global WidgetGui := ""
+global WidgetRows := Map()
 global currentLang := GetCurrentLanguage()
 global lang := langs[currentLang]
 
 ShowStartupTip()
+SetTimer(OpenSlotWidget, -300)
 
 ^!0::OpenManager()
+^!w::ToggleSlotWidget()
 
 ^!1::InjectSet(1)
 ^!2::InjectSet(2)
@@ -266,10 +310,12 @@ OpenManager(selectedSlot := 1) {
     loadBtn := windowObj.AddButton("x+10 w90", lang["load"])
     saveBtn := windowObj.AddButton("x+10 w90", lang["save"])
     injectBtn := windowObj.AddButton("x+10 w90", lang["inject"])
+    clearBtn := windowObj.AddButton("x+10 w90", lang["clear_slot"])
 
     windowObj.AddText("xm y+16", lang["language"])
     langDrop := windowObj.AddDropDownList("x+10 w140 Choose" currentLangIndex, langItems)
     settingsBtn := windowObj.AddButton("x+10 w90", lang["settings"])
+    widgetBtn := windowObj.AddButton("x+10 w90", lang["widget_button"])
 
     windowObj.AddText("xm y+16", lang["setname"])
     nameEdit := windowObj.AddEdit("x+10 w560")
@@ -292,9 +338,11 @@ OpenManager(selectedSlot := 1) {
     loadBtn.OnEvent("Click", (*) => FillForm(slotDrop.Text + 0, nameEdit, topEdit, middleEdit, bottomEdit))
     saveBtn.OnEvent("Click", (*) => SaveForm(slotDrop.Text + 0, nameEdit, topEdit, middleEdit, bottomEdit))
     injectBtn.OnEvent("Click", (*) => SaveAndInject(slotDrop.Text + 0, nameEdit, topEdit, middleEdit, bottomEdit))
+    clearBtn.OnEvent("Click", (*) => ClearCurrentSlot(slotDrop.Text + 0, nameEdit, topEdit, middleEdit, bottomEdit))
     langDrop.OnEvent("Change", (*) => ChangeLanguage(langValues[langDrop.Value]))
-    importHistoryBtn.OnEvent("Click", (*) => ImportRecentHistoryItems(topEdit, middleEdit, bottomEdit))
-    importCurrentBtn.OnEvent("Click", (*) => ImportCurrentClipboardLines(topEdit, middleEdit, bottomEdit))
+    widgetBtn.OnEvent("Click", (*) => OpenSlotWidget())
+    importHistoryBtn.OnEvent("Click", (*) => ImportRecentHistoryItems(slotDrop.Text + 0, nameEdit, topEdit, middleEdit, bottomEdit))
+    importCurrentBtn.OnEvent("Click", (*) => ImportCurrentClipboardLines(slotDrop.Text + 0, nameEdit, topEdit, middleEdit, bottomEdit))
 
     windowObj.Show()
     FillForm(selectedSlot, nameEdit, topEdit, middleEdit, bottomEdit)
@@ -322,6 +370,7 @@ WriteSlot(slot, name, top, middle, bottom) {
     IniWrite(top, IniPath, section, "Top")
     IniWrite(middle, IniPath, section, "Middle")
     IniWrite(bottom, IniPath, section, "Bottom")
+    RefreshSlotWidget()
 }
 
 FillForm(slot, nameEdit, topEdit, middleEdit, bottomEdit) {
@@ -342,7 +391,27 @@ SaveAndInject(slot, nameEdit, topEdit, middleEdit, bottomEdit) {
     InjectSet(slot)
 }
 
-ImportRecentHistoryItems(topEdit, middleEdit, bottomEdit) {
+ClearCurrentSlot(slot, nameEdit, topEdit, middleEdit, bottomEdit) {
+    if (MsgBox(lang["confirm_clear"], lang["clear_slot"], "YesNo Icon?") != "Yes") {
+        return
+    }
+
+    nameEdit.Value := ""
+    topEdit.Value := ""
+    middleEdit.Value := ""
+    bottomEdit.Value := ""
+    WriteSlot(slot, "", "", "", "")
+    ShowTool(lang["slot_cleared"])
+}
+
+PersistImportedSlot(slot, nameEdit, topEdit, middleEdit, bottomEdit) {
+    if Trim(nameEdit.Value) = "" {
+        nameEdit.Value := PreviewText(topEdit.Value, 60)
+    }
+    WriteSlot(slot, nameEdit.Value, topEdit.Value, middleEdit.Value, bottomEdit.Value)
+}
+
+ImportRecentHistoryItems(slot, nameEdit, topEdit, middleEdit, bottomEdit) {
     global HistoryScriptPath
 
     if !FileExist(HistoryScriptPath) {
@@ -387,6 +456,7 @@ ImportRecentHistoryItems(topEdit, middleEdit, bottomEdit) {
         topEdit.Value := recentLines[1]
         middleEdit.Value := recentLines[2]
         bottomEdit.Value := recentLines[3]
+        PersistImportedSlot(slot, nameEdit, topEdit, middleEdit, bottomEdit)
         ShowTool(lang["recent_3_loaded"])
         return
     }
@@ -399,10 +469,11 @@ ImportRecentHistoryItems(topEdit, middleEdit, bottomEdit) {
     topEdit.Value := cleanItems[1]
     middleEdit.Value := cleanItems[2]
     bottomEdit.Value := cleanItems[3]
+    PersistImportedSlot(slot, nameEdit, topEdit, middleEdit, bottomEdit)
     ShowTool(lang["recent_3_items_loaded"])
 }
 
-ImportCurrentClipboardLines(topEdit, middleEdit, bottomEdit) {
+ImportCurrentClipboardLines(slot, nameEdit, topEdit, middleEdit, bottomEdit) {
     text := A_Clipboard
     if text = "" {
         MsgBox(lang["err_clipboard_empty"])
@@ -419,6 +490,7 @@ ImportCurrentClipboardLines(topEdit, middleEdit, bottomEdit) {
     topEdit.Value := lines[1]
     middleEdit.Value := lines[2]
     bottomEdit.Value := lines[3]
+    PersistImportedSlot(slot, nameEdit, topEdit, middleEdit, bottomEdit)
     ShowTool(lang["current_3_loaded"])
 }
 
@@ -431,6 +503,93 @@ GetNonEmptyLines(text) {
         }
     }
     return lines
+}
+
+ToggleSlotWidget() {
+    global WidgetGui, WidgetRows
+
+    if IsObject(WidgetGui) {
+        try WidgetGui.Destroy()
+        WidgetGui := ""
+        WidgetRows := Map()
+        return
+    }
+
+    OpenSlotWidget()
+}
+
+OpenSlotWidget() {
+    global WidgetGui, WidgetRows
+
+    if IsObject(WidgetGui) {
+        RefreshSlotWidget()
+        try WidgetGui.Show()
+        return
+    }
+
+    widgetObj := Gui("+AlwaysOnTop +ToolWindow", lang["widget_title"])
+    WidgetGui := widgetObj
+    WidgetRows := Map()
+    widgetObj.SetFont("s9", "맑은 고딕")
+    widgetObj.OnEvent("Close", CloseSlotWidget)
+    widgetObj.OnEvent("Escape", CloseSlotWidget)
+
+    widgetObj.AddText("xm w290", lang["widget_title"])
+    Loop 6 {
+        slot := A_Index
+        slotBtn := widgetObj.AddButton("xm y+5 w34 h24", slot)
+        slotBtn.OnEvent("Click", InjectSlotFromWidget.Bind(slot))
+        rowText := widgetObj.AddText("x+6 yp+4 w250", "")
+        WidgetRows[slot] := rowText
+    }
+
+    refreshBtn := widgetObj.AddButton("xm y+10 w90", lang["refresh"])
+    managerBtn := widgetObj.AddButton("x+8 w90", lang["manager"])
+    refreshBtn.OnEvent("Click", (*) => RefreshSlotWidget())
+    managerBtn.OnEvent("Click", (*) => OpenManager())
+
+    RefreshSlotWidget()
+    widgetObj.Show("x10 y120 AutoSize")
+}
+
+CloseSlotWidget(windowObj, *) {
+    global WidgetGui, WidgetRows
+
+    try windowObj.Destroy()
+    WidgetGui := ""
+    WidgetRows := Map()
+}
+
+RefreshSlotWidget() {
+    global WidgetGui, WidgetRows
+
+    if !IsObject(WidgetGui) || !IsObject(WidgetRows) {
+        return
+    }
+
+    Loop 6 {
+        slot := A_Index
+        if WidgetRows.Has(slot) {
+            WidgetRows[slot].Text := PreviewText(ReadSlot(slot)["Top"], 34)
+        }
+    }
+}
+
+PreviewText(text, maxLen := 34) {
+    previewLines := GetNonEmptyLines(text)
+    preview := previewLines.Length ? previewLines[1] : Trim(text)
+    if preview = "" {
+        return lang["widget_empty"]
+    }
+    preview := StrReplace(preview, "`t", " ")
+    if StrLen(preview) > maxLen {
+        return SubStr(preview, 1, maxLen - 3) "..."
+    }
+    return preview
+}
+
+InjectSlotFromWidget(slot, *) {
+    InjectSet(slot)
 }
 
 InjectSet(slot) {
