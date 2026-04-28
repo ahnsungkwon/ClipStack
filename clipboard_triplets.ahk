@@ -534,17 +534,17 @@ OpenSlotWidget() {
     widgetObj.OnEvent("Close", CloseSlotWidget)
     widgetObj.OnEvent("Escape", CloseSlotWidget)
 
-    widgetObj.AddText("xm w290", lang["widget_title"])
+    widgetObj.AddText("xm w235", lang["widget_title"])
     Loop 6 {
         slot := A_Index
         slotBtn := widgetObj.AddButton("xm y+5 w34 h24", slot)
         slotBtn.OnEvent("Click", InjectSlotFromWidget.Bind(slot))
-        rowText := widgetObj.AddText("x+6 yp+4 w250", "")
+        rowText := widgetObj.AddText("x+6 yp+4 w195", "")
         WidgetRows[slot] := rowText
     }
 
-    refreshBtn := widgetObj.AddButton("xm y+10 w90", lang["refresh"])
-    managerBtn := widgetObj.AddButton("x+8 w90", lang["manager"])
+    refreshBtn := widgetObj.AddButton("x45 y+10 w78", lang["refresh"])
+    managerBtn := widgetObj.AddButton("x+10 w78", lang["manager"])
     refreshBtn.OnEvent("Click", (*) => RefreshSlotWidget())
     managerBtn.OnEvent("Click", (*) => OpenManager())
 
