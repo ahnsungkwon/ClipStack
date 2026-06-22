@@ -31,6 +31,7 @@ from PIL import Image, ImageOps, ImageTk
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 INVALID_FILENAME_CHARS = r'<>:"/\|?*'
 SMART_LOOKUP_SCRIPT = Path(r"E:\GoogleDrive\코드\전화번호추출\smart_lookup.py")
+SUPPLEMENT_DIR = Path(r"E:\GoogleDrive\[상조신청서입력]\보완자료다운로드")
 COMPLEMENT_REASONS = [
     "남녀구분미체크",
     "계좌보완",
@@ -42,8 +43,8 @@ COMPLEMENT_REASONS = [
 ]
 STATUS_FOLDERS = {
     "주말미등록": "주말미등록",
-    "입력전 취소": "입력전 취소",
-    "입력후 취소": "입력후 취소",
+    "입력전 취소": "취소",
+    "입력후 취소": "취소",
     "입력전 변경": "입력전 변경",
     "입력후 변경": "입력후 변경",
     "카드": "카드",
@@ -71,6 +72,16 @@ def natural_key(path: Path):
     """파일명을 숫자 순서에 맞게 정렬하기 위한 키."""
     parts = re.split(r"(\d+)", path.name)
     return [int(p) if p.isdigit() else p.casefold() for p in parts]
+
+
+def quota_folder_name(quota: str) -> str:
+    try:
+        n = int(quota)
+    except Exception:
+        n = 1
+    if n >= 5:
+        return "5구좌이상"
+    return f"{max(n, 1)}구좌"
 
 
 def resolve_original_dir(target: Path) -> Path:
@@ -371,14 +382,15 @@ class ImageCache:
 
 
 class RenameTab(ttk.Frame):
-    def __init__(self, master, original_dir: Path, app=None):
+    def __init__(self, master, original_dir: Path, app=None, mode: str = "event"):
         super().__init__(master)
         self.app = app
+        self.mode = mode
         self.original_dir = original_dir
-        self.application_dir = original_dir.parent if original_dir.name == "[\uc6d0\ubcf8]" else original_dir
+        self.application_dir = original_dir.parent if original_dir.name == "[원본]" else original_dir
         self.event_dir = self.application_dir.parent
         self.progress_path = original_dir / ".rename_progress.json"
-        self.all_images = list_images(original_dir)
+        self.all_images = self.scan_images()
         self.images = list(self.all_images)
         self.idx = 0
         self.photo = None
@@ -401,6 +413,8 @@ class RenameTab(ttk.Frame):
         self.external_bat_running = False
         self.lookup_df = pd.DataFrame()
         self.lookup_search_var = tk.StringVar()
+        self.supplement_target_var = tk.StringVar()
+        self.supplement_target_map = {}
         self.filter_status_var = tk.StringVar(value="전체")
         self.filter_search_var = tk.StringVar()
         self.status_vars = {status: tk.BooleanVar(value=False) for status in STATUS_FOLDERS}
@@ -431,6 +445,18 @@ class RenameTab(ttk.Frame):
         }
         self.progress_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
+    def scan_images(self) -> list[Path]:
+        if self.mode == "supplement":
+            return sorted(
+                [
+                    path
+                    for path in self.original_dir.iterdir()
+                    if path.is_file() and path.suffix.lower() in IMAGE_EXTS
+                ],
+                key=natural_key,
+            )
+        return list_images(self.original_dir)
+
     def build_ui(self) -> None:
         top = ttk.Frame(self)
         top.pack(side=tk.TOP, fill=tk.X, padx=8, pady=6)
@@ -449,7 +475,7 @@ class RenameTab(ttk.Frame):
         self.filter_status_combo = ttk.Combobox(
             filter_bar,
             textvariable=self.filter_status_var,
-            values=["전체", "CMS", "보완", "주말미등록", "입력전 취소", "입력후 취소", "입력전 변경", "입력후 변경", "카드"],
+            values=["전체", "CMS", "보완", "주말미등록", "취소", "입력전 취소", "입력후 취소", "입력전 변경", "입력후 변경", "카드"],
             state="readonly",
             width=12,
         )
@@ -539,6 +565,10 @@ class RenameTab(ttk.Frame):
         )
         ttk.Label(right, text=help_text, justify=tk.LEFT, wraplength=360).pack(anchor=tk.W, fill=tk.X, pady=12)
 
+        if self.mode == "supplement":
+            self.build_supplement_tools(right)
+            return
+
         lookup = ttk.LabelFrame(right, text="전화번호 매칭")
         lookup.pack(fill=tk.BOTH, expand=True, pady=(4, 8))
         lookup_btns = ttk.Frame(lookup)
@@ -606,6 +636,145 @@ class RenameTab(ttk.Frame):
         for col in range(4):
             complement.columnconfigure(col, weight=1)
 
+    def build_supplement_tools(self, right: ttk.Frame) -> None:
+        tools = ttk.LabelFrame(right, text="보완자료 처리")
+        tools.pack(fill=tk.BOTH, expand=True, pady=(4, 8))
+
+        target_row = ttk.Frame(tools)
+        target_row.pack(fill=tk.X, padx=6, pady=4)
+        ttk.Label(target_row, text="대상 강연회").pack(side=tk.LEFT, padx=(0, 4))
+        self.supplement_target_combo = ttk.Combobox(
+            target_row,
+            textvariable=self.supplement_target_var,
+            state="readonly",
+            width=26,
+        )
+        self.supplement_target_combo.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=2)
+        ttk.Button(target_row, text="대상 새로고침", command=self.refresh_supplement_targets).pack(side=tk.LEFT, padx=2)
+
+        btn_row = ttk.Frame(tools)
+        btn_row.pack(fill=tk.X, padx=6, pady=(0, 4))
+        ttk.Button(
+            btn_row,
+            text="보완자료리사이즈 실행",
+            command=lambda: self.run_local_bat_async("보완자료리사이즈.bat", "보완자료리사이즈", base_dir=self.original_dir),
+        ).pack(side=tk.LEFT, padx=2)
+        ttk.Button(
+            btn_row,
+            text="현재 보완자료 대체 이동",
+            command=self.move_current_supplement_to_event,
+        ).pack(side=tk.LEFT, padx=2)
+
+        help_text = (
+            "처리 방식\n"
+            "1. 보완자료 파일명을 구좌수+이름으로 변경\n"
+            "2. 보완자료리사이즈 실행: jpg 폴더에 저해상도 파일 생성\n"
+            "3. 현재 보완자료 대체 이동: 원본은 대상 강연회 [원본]\\보완으로 이동\n"
+            "4. 저해상도 jpg는 대상 강연회 신청서의 1구좌~5구좌이상 폴더로 이동\n"
+            "5. 같은 이름 파일이 있으면 덮어씁니다."
+        )
+        ttk.Label(tools, text=help_text, justify=tk.LEFT, wraplength=360).pack(anchor=tk.W, fill=tk.X, padx=6, pady=4)
+
+        self.lookup_text = tk.Text(tools, height=10, wrap=tk.WORD, font=("Consolas", 9))
+        self.lookup_text.pack(fill=tk.BOTH, expand=True, padx=6, pady=(0, 6))
+        self.refresh_supplement_targets()
+
+    def refresh_supplement_targets(self) -> None:
+        if self.mode != "supplement" or not self.app:
+            return
+        self.supplement_target_map = {}
+        values = []
+        for tab in self.app.event_tabs():
+            label = tab.event_dir.name
+            if label in self.supplement_target_map:
+                label = f"{tab.event_dir.name} ({len(values) + 1})"
+            self.supplement_target_map[label] = tab
+            values.append(label)
+        if hasattr(self, "supplement_target_combo"):
+            self.supplement_target_combo["values"] = values
+        current = self.supplement_target_var.get()
+        if values and current not in self.supplement_target_map:
+            self.supplement_target_var.set(values[0])
+
+    def selected_supplement_target_tab(self):
+        self.refresh_supplement_targets()
+        tab = self.supplement_target_map.get(self.supplement_target_var.get())
+        if not tab:
+            self.append_lookup_log("[ERROR] 대상 강연회 탭을 선택하세요.")
+            return None
+        return tab
+
+    def replace_path(self, source: Path, target: Path) -> None:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if target.exists():
+            target.unlink()
+        source.replace(target)
+
+    def find_resized_file(self, stem: str, suffix: str, quota: str) -> Path | None:
+        folders = []
+        if quota:
+            folders.append(self.application_dir / quota_folder_name(quota))
+        folders.extend(
+            [
+                self.application_dir / "1구좌",
+                self.application_dir / "2구좌",
+                self.application_dir / "3구좌",
+                self.application_dir / "4구좌",
+                self.application_dir / "5구좌이상",
+            ]
+        )
+
+        names = [f"{stem}{suffix}"]
+        for ext in IMAGE_EXTS:
+            names.append(f"{stem}{ext}")
+
+        seen = set()
+        for folder in folders:
+            if folder in seen:
+                continue
+            seen.add(folder)
+            for name in names:
+                path = folder / name
+                if path.exists():
+                    return path
+        return None
+
+    def move_current_supplement_to_event(self) -> None:
+        if self.mode != "supplement":
+            return
+        target_tab = self.selected_supplement_target_tab()
+        if not target_tab:
+            return
+        if not self.rename_current(silent=True):
+            return
+
+        source = self.current_path()
+        if not source:
+            return
+        quota, name = parse_quota_name(source)
+        if not quota or not name:
+            self.append_lookup_log("[ERROR] 파일명이 구좌수+이름 형식이 아닙니다.")
+            return
+
+        low_source = self.original_dir / "jpg" / source.name
+        if not low_source.exists():
+            self.append_lookup_log(f"[ERROR] 저해상도 파일이 없습니다. 먼저 리사이즈를 실행하세요: {low_source}")
+            return
+
+        original_target = target_tab.original_dir / "보완" / source.name
+        low_target = target_tab.application_dir / quota_folder_name(quota) / source.name
+
+        try:
+            self.replace_path(source, original_target)
+            self.replace_path(low_source, low_target)
+        except Exception as e:
+            self.append_lookup_log(f"[ERROR] 보완자료 이동 실패: {e}")
+            return
+
+        self.append_lookup_log(f"[OK] 원본 대체: {original_target}")
+        self.append_lookup_log(f"[OK] 저해상도 대체: {low_target}")
+        target_tab.reload_images(keep_path=original_target)
+        self.reload_images()
 
     def bind_keys(self) -> None:
         self.bind("<Up>", lambda _e: self.prev_item())
@@ -714,6 +883,8 @@ class RenameTab(ttk.Frame):
         parts = path.relative_to(self.original_dir).parts
         if "보완" in parts:
             return "보완"
+        if "취소" in parts or "입력전 취소" in parts or "입력후 취소" in parts:
+            return "취소"
         for status, folder in STATUS_FOLDERS.items():
             if folder in parts:
                 return status
@@ -1005,8 +1176,11 @@ class RenameTab(ttk.Frame):
         was_last = self.idx >= len(self.images) - 1
         if self.rename_current(silent=silent):
             if was_last:
-                self.append_lookup_log("\n[INFO] 마지막 이미지까지 파일명 변경 완료. 전화번호 매칭을 실행합니다.\n")
-                self.run_smart_lookup_async()
+                if self.mode == "event":
+                    self.append_lookup_log("\n[INFO] 마지막 이미지까지 파일명 변경 완료. 전화번호 매칭을 실행합니다.\n")
+                    self.run_smart_lookup_async()
+                else:
+                    self.append_lookup_log("\n[INFO] 마지막 보완자료까지 파일명 변경 완료.\n")
             else:
                 self.next_item()
 
@@ -1280,7 +1454,6 @@ class RenameTab(ttk.Frame):
                 return
             change_to = str(int(change_to))
 
-        target_dir = self.original_dir / (STATUS_FOLDERS.get(status, "보완") if status else "")
         move_source = path
         if status == "입력전 변경" and current_name and change_to:
             renamed = unique_target_path(path, f"{change_to}{current_name}")
@@ -1289,7 +1462,11 @@ class RenameTab(ttk.Frame):
                 self.cache.rename_key(path, renamed)
                 move_source = renamed
                 path = renamed
-        target = unique_path_in_dir(move_source, target_dir)
+
+        target = move_source
+        if status and status != "입력후 변경":
+            target_dir = self.original_dir / STATUS_FOLDERS.get(status, "보완")
+            target = unique_path_in_dir(move_source, target_dir)
 
         if status == "보완":
             line = f"{path.stem}\t{', '.join(reasons)}"
@@ -1306,6 +1483,17 @@ class RenameTab(ttk.Frame):
             if not same_path(move_source, target):
                 move_source.rename(target)
                 moved = True
+            if status == "입력전 변경" and current_quota and current_name and change_to:
+                resized_source = self.find_resized_file(original_stem, path.suffix, current_quota)
+                resized_target = self.application_dir / quota_folder_name(change_to) / path.name
+                if resized_source:
+                    if same_path(resized_source, resized_target):
+                        self.append_lookup_log(f"[입력전 변경] 리사이즈 파일 위치 유지: {resized_target}")
+                    else:
+                        self.replace_path(resized_source, resized_target)
+                        self.append_lookup_log(f"[입력전 변경] 리사이즈 파일 이동: {resized_source.name} -> {resized_target}")
+                else:
+                    self.append_lookup_log(f"[WARN] 기존 리사이즈 파일을 찾지 못했습니다: {original_stem}")
             if txt_path:
                 update_txt_status(txt_path, original_stem, "", [], "", "")
                 update_txt_status(txt_path, path.stem, status, reasons, current_quota, change_to)
@@ -1342,7 +1530,7 @@ class RenameTab(ttk.Frame):
         self.show_item(self.idx + delta)
 
     def reload_images(self, keep_path: Path | None = None) -> None:
-        self.all_images = list_images(self.original_dir)
+        self.all_images = self.scan_images()
         self.apply_filter(keep_path=keep_path)
 
     def open_folder(self) -> None:
@@ -1368,7 +1556,8 @@ class RenameApp(tk.Tk):
 
         self.notebook = ttk.Notebook(self)
         self.notebook.pack(fill=tk.BOTH, expand=True)
-        self.add_tab(original_dir)
+        self.add_tab(original_dir, select=False)
+        self.add_supplement_tab(select=True)
         self.notebook.bind("<<NotebookTabChanged>>", lambda _e: self.focus_active_tab())
 
         self.bind("<Up>", lambda e: self.dispatch_to_active(e, "prev_item"))
@@ -1383,7 +1572,7 @@ class RenameApp(tk.Tk):
         event_dir = application_dir.parent
         return event_dir.name or original_dir.name
 
-    def add_tab(self, target: Path) -> None:
+    def add_tab(self, target: Path, select: bool = True) -> None:
         try:
             original_dir = resolve_original_dir(Path(target))
         except Exception as e:
@@ -1391,13 +1580,40 @@ class RenameApp(tk.Tk):
             return
         tab = RenameTab(self.notebook, original_dir, app=self)
         self.notebook.add(tab, text=self.tab_title(original_dir))
-        self.notebook.select(tab)
-        tab.combined_entry.focus_set()
+        if select:
+            self.notebook.select(tab)
+            tab.combined_entry.focus_set()
+        self.refresh_supplement_tabs()
+
+    def add_supplement_tab(self, select: bool = True) -> None:
+        SUPPLEMENT_DIR.mkdir(parents=True, exist_ok=True)
+        tab = RenameTab(self.notebook, SUPPLEMENT_DIR, app=self, mode="supplement")
+        self.notebook.add(tab, text="보완자료")
+        if select:
+            self.notebook.select(tab)
+            tab.combined_entry.focus_set()
+        self.refresh_supplement_tabs()
 
     def open_new_tab(self) -> None:
         folder = filedialog.askdirectory(title="신청서 폴더 또는 [원본] 폴더 선택")
         if folder:
             self.add_tab(Path(folder))
+
+    def event_tabs(self) -> list[RenameTab]:
+        tabs = []
+        for tab_id in self.notebook.tabs():
+            widget = self.nametowidget(tab_id)
+            if isinstance(widget, RenameTab) and widget.mode == "event":
+                tabs.append(widget)
+        return tabs
+
+    def refresh_supplement_tabs(self) -> None:
+        if not hasattr(self, "notebook"):
+            return
+        for tab_id in self.notebook.tabs():
+            widget = self.nametowidget(tab_id)
+            if isinstance(widget, RenameTab) and widget.mode == "supplement":
+                widget.refresh_supplement_targets()
 
     def active_tab(self):
         selected = self.notebook.select()
